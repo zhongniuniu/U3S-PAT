@@ -1,0 +1,40 @@
+# Logger options
+log_iter: 10                 # How often to log the training loss 
+val_iter: 100                # How often to validate testing and save output images during training
+image_save_iter: 1000        # How often do you want to save output images during training
+display_image_num: 4
+
+# Optimization options
+max_iter: 2000                # Maximum number of training iterations
+batch_size: 1                 # Batch size
+loss: L2
+optimizer: Adam               # Optimizer for trainings
+weight_decay: 0.0             # Weight decay
+beta1: 0.9                    # Adam parameter
+beta2: 0.999                  # Adam parameter
+lr: 0.00001                    # Initial learning rate [RFF: 10-3, Neural Recon: 10-4, Prior-based Neural Recon: 10-5]
+
+# Model options
+model: SIREN                  # Options for MLP models
+net: 
+  network_input_size: 512     # Input size for network
+  network_output_size: 1
+  network_depth: 4            # Depth of MLP layers
+  network_width: 512          # Width of MLP layers
+
+encoder:
+  embedding: gauss            # Input embedding method
+  scale: 4
+  embedding_size: 128         # Embedding size for input Fourier feature encoding
+  coordinates_size: 3
+
+num_proj: 21                  # Number of projections for CT recon
+proj_size: [512, 800]
+
+
+# Raw patients data
+data: rate6_3d
+img_size: [5, 220, 220]  # full size: (92, 256, 256)
+img_path: ./data/ct_data/pancs_4dct_phase6.npz  # Image path for data loading
+#pretrain_model_path: C:/Users/Admin/Desktop/zytNeRP/outputs/PAT_image_regression_3d/deadmouse_rate8_3d/img[18, 64, 64]_SIREN_512_256_8_L2_lr5e-05_encoder_gauss_scale4_size256/checkpoints/model_002000.pt
+pretrain_model_path: /outputs/PAT_image_regression_3d/deadmouse_crop220_scan15_rate6_3d/img[5, 220, 220]_SIREN_512_256_8_L2_lr5e-05_encoder_gauss_scale4_size256/checkpoints/model_002000.pt
